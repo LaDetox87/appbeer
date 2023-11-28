@@ -2,7 +2,7 @@
     "name": "Venez boire",
     "short_name": "Biereapp",
     "description": "superbe appli sur les bières pour partager cette passion",
-    "start_url": "/index.html",
+    "start_url": "index.html",
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
     "display": "standalone",
