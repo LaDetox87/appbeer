@@ -1,0 +1,50 @@
+<a href="index.html">List Beer</a>
+<form class="form-example">
+
+    <label for="name">Enter your name: </label>
+    <input type="text" name="name" id="name" required />
+    <br>
+
+    <label for="email">Enter your desc: </label>
+    <input type="text" name="desc" id="desc" required />
+    <br>
+
+    <label for="img">Enter your url img </label>
+    <input type="text" name="url" id="url" required />
+    <br>
+
+    <a href="#" onclick="ajouterBeer()">Ajouter</a>
+
+  </form>
+ <script>
+
+    function ajouterBeer(){
+
+        let nom = document.getElementById("name").value;
+        let desc = document.getElementById("desc").value;
+        let url = document.getElementById("url").value;
+
+        const beer = {"id": Math.floor(Math.random() * 1000), "name":nom, "description":desc, "image_url":url };
+
+        const request = indexedDB.open('BeerDB', 1);
+        
+        request.onupgradeneeded = (event) => {
+          const db = event.target.result;
+        };
+
+        request.onsuccess = (event) => {
+          const db = event.target.result;
+          const transaction = db.transaction(['beers'], 'readwrite');
+          const store = transaction.objectStore('beers');
+          console.log(beer);
+          store.add(beer);
+        };
+
+        request.onerror = (event) => {
+          reject('Error opening IndexedDB');
+        };
+
+        
+    }
+ </script>
+  
